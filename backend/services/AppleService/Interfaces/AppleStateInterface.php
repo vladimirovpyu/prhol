@@ -2,8 +2,8 @@
 namespace AppleService\Interfaces;
 
 /**
- * Два основных метода - падать и кушать
- * Реализация через состояния. Паттерн "Состояние".
+ * Р”РІР° РѕСЃРЅРѕРІРЅС‹С… РјРµС‚РѕРґР° - РїР°РґР°С‚СЊ Рё РєСѓС€Р°С‚СЊ
+ * Р РµР°Р»РёР·Р°С†РёСЏ С‡РµСЂРµР· СЃРѕСЃС‚РѕСЏРЅРёСЏ. РџР°С‚С‚РµСЂРЅ "РЎРѕСЃС‚РѕСЏРЅРёРµ".
  *
  * Interface AppleStateInterface
  * @package AppleService\Interfaces
@@ -12,13 +12,13 @@ interface AppleStateInterface
 {
 
     /**
-     * Упасть
+     * РЈРїР°СЃС‚СЊ
      * @return bool
      */
     public function fall(): bool;
 
     /**
-     * - съесть ($percent - процент откушенной части)
+     * - СЃСЉРµСЃС‚СЊ ($percent - РїСЂРѕС†РµРЅС‚ РѕС‚РєСѓС€РµРЅРЅРѕР№ С‡Р°СЃС‚Рё)
      * @param int $percent
      * @return mixed
      */

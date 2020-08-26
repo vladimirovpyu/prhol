@@ -1,29 +1,25 @@
 <?php
 use \AppleService\Interfaces\AppleStateInterface;
-use AppleStateAbstract;
 
 /**
  * Class AppleStateLies
- * Состояние яблока - лежит
- *
- * После лежания 5 часов - портится.
+ * РЎРѕСЃС‚РѕСЏРЅРёРµ СЏР±Р»РѕРєР° - Р›РµР¶РёС‚
  */
 class AppleStateLies extends AppleStateAbstract implements AppleStateInterface
 {
     /**
-     * Упасть
+     * РЈРїР°СЃС‚СЊ
      * @return bool
      */
     public function fall(): bool
     {
-        // уже лежит
         throw new Exception("Apple on ground already" );
     }
 
     /**
-     * - съесть ($percent - процент откушенной части)
+     * - СЃРєСѓС€Р°С‚СЊ
      * @param int $percent
-     * @return int
+     * @return bool
      */
     public function eat(int $percent): bool
     {

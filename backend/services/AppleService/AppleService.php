@@ -7,7 +7,7 @@ use AppleService\Interfaces\AppleStateInterface;
 
 /**
  * Class AppleService
- * Реализует логику работы с яблоками
+ * Р РµР°Р»РёР·СѓРµС‚ Р»РѕРіРёРєСѓ СЂР°Р±РѕС‚С‹ СЃ СЏР±Р»РѕРєР°РјРё
  */
 class AppleService implements AppleServiceInterface
 {
@@ -15,13 +15,12 @@ class AppleService implements AppleServiceInterface
     const APPLE_STATUS_FALL = 1;
 
     /**
-     * ActiveRecord с данными
      * @var Apple
      */
     private Apple $apple;
 
     /**
-     * Состояние
+     * @var AppleStateInterface
      */
     private AppleStateInterface $state;
 
@@ -60,25 +59,26 @@ class AppleService implements AppleServiceInterface
     }
 
     /**
-     * Определяет состояние по данным яблока
+     * РћРїСЂРµРґРµР»СЏРµС‚ СЃРѕСЃС‚РѕСЏРЅРёРµ РїРѕ РґР°РЅРЅС‹Рј СЏР±Р»РѕРєР°
      * @return AppleStateInterface
      */
     private function checkState()
     {
-        // 1. висит
+        // 1. РІРёСЃРёС‚
         if ($this->apple->status == self::APPLE_STATUS_HANG) {
             $this->setState(new \AppleStateHang($this, $this->apple));
         }
-        // 2. лежит
+        // 2. Р»РµР¶РёС‚
         else
         {
-            // 2.1 сгнило
+            // 2.1 РёСЃРїРѕСЂС‡РµРЅРѕ
+            // РџРѕСЃР»Рµ Р»РµР¶Р°РЅРёСЏ 5 С‡Р°СЃРѕРІ - РїРѕСЂС‚РёС‚СЃСЏ.
             $nowDateTime = new \DateTime();
             $fallDateTime = new \DateTime($this->apple->date_fall);
             if ($nowDateTime->diff($fallDateTime)->format('%H') > 5) {
                 $this->setState(new \AppleStateRotted($this, $this->apple));
             }
-            // 2.2 не сгнило
+            // 2.2 РµС‰Рµ СЃСЉРµРґРѕР±РЅРѕ
             else {
                 $this->setState(new \AppleStateLies($this, $this->apple));
             }
@@ -87,7 +87,7 @@ class AppleService implements AppleServiceInterface
     }
 
     /**
-     * Для изменения состояний
+     * Р”Р»СЏ РёР·РјРµРЅРµРЅРёСЏ СЃРѕСЃС‚РѕСЏРЅРёР№
      * @param AppleStateInterface $state
      * @return AppleStateInterface
      */

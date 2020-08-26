@@ -2,8 +2,8 @@
 namespace AppleService\Interfaces;
 
 /**
- * Такая реализация допустима, потому что Сервис реализует методы fall и eat
- * Но реализует их не напрямую, а через различные состояния
+ * РРЅС‚РµСЂС„РµР№СЃ СЃРµСЂРІРёСЃР° РґР»СЏ СЂР°Р±РѕС‚С‹ СЃ СЏР±Р»РѕРєР°РјРё.
+ * РќР°СЃР»РµРґСѓРµС‚СЃСЏ РѕС‚ РёРЅС‚РµСЂС„РµР№СЃР° РЎРѕСЃС‚РѕСЏРЅРёРµ, С‡С‚РѕР±С‹ СЂРµР°Р»РёР·РѕРІР°С‚СЊ С‡Р°СЃС‚СЊ С„СѓРЅРєС†РёРѕРЅР°Р»Р° С‡РµСЂРµР· РїР°С‚С‚РµСЂРЅ "РЎРѕСЃС‚РѕСЏРЅРёРµ"
  *
  * Interface AppleServiceInterface
  * @package AppleService\Interfaces
@@ -11,7 +11,7 @@ namespace AppleService\Interfaces;
 interface AppleServiceInterface extends AppleStateInterface
 {
     /**
-     * Получить состояние яблока (висит на дереве, лежит, сгнило)
+     * РџРѕР»СѓС‡Р°РµС‚ СЃРѕСЃС‚РѕСЏРЅРёРµ (СЌРєР·РµРјРїР»СЏСЂ РѕРґРЅРѕРіРѕ РёР· РєР»Р°СЃСЃРѕРІ СЃРѕСЃС‚РѕСЏРЅРёСЏ)
      * @return AppleStateInterface
      */
     public function getState(): AppleStateInterface;

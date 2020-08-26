@@ -3,43 +3,43 @@ use \AppleService\Interfaces\AppleStateInterface;
 
 /**
  * Class AppleStateHang
- * Состояние яблока - висит
+ * РЎРѕСЃС‚РѕСЏРЅРёРµ СЏР±Р»РѕРєР° - РІРёСЃРёС‚
  *
- * Пока висит на дереве - испортиться не может.
- * Когда висит на дереве - съесть не получится.
+ * РџРѕРєР° РІРёСЃРёС‚ РЅР° РґРµСЂРµРІРµ - РёСЃРїРѕСЂС‚РёС‚СЊСЃСЏ РЅРµ РјРѕР¶РµС‚.
+ * РљРѕРіРґР° РІРёСЃРёС‚ РЅР° РґРµСЂРµРІРµ - СЃСЉРµСЃС‚СЊ РЅРµ РїРѕР»СѓС‡РёС‚СЃСЏ.
  */
 class AppleStateHang extends AppleStateAbstract implements AppleStateInterface
 {
 
     /**
-     * Упасть
+     * РЈРїР°СЃС‚СЊ
      * @return bool
      */
     public function fall(): bool
     {
-        // просто меняем состояние
+        // РїСЂРѕСЃС‚Рѕ РјРµРЅСЏРµРј СЃРѕСЃС‚РѕСЏРЅРёРµ
         $this->service->setState(new AppleStateLies($this->service, $this->apple));
     }
 
     /**
-     * - съесть ($percent - процент откушенной части)
+     * - СЃСЉРµСЃС‚СЊ ($percent - РїСЂРѕС†РµРЅС‚ РѕС‚РєСѓС€РµРЅРЅРѕР№ С‡Р°СЃС‚Рё)
      * @param int $percent
      * @return mixed
      */
     public function eat(int $percent): bool
     {
-        // Когда висит на дереве - съесть не получится.
+        // РљРѕРіРґР° РІРёСЃРёС‚ РЅР° РґРµСЂРµРІРµ - СЃСЉРµСЃС‚СЊ РЅРµ РїРѕР»СѓС‡РёС‚СЃСЏ.
         //return false;
         throw new Exception("Cant eat Apple when it Hang" );
     }
 
     /**
-     * - сгнить, в тз этого нет, но такой метод нужен
+     * - СЃРіРЅРёС‚СЊ, РІ С‚Р· СЌС‚РѕРіРѕ РЅРµС‚, РЅРѕ С‚Р°РєРѕР№ РјРµС‚РѕРґ РЅСѓР¶РµРЅ
      * @return bool
      */
     protected function rot(): bool
     {
-        // Пока висит на дереве - испортиться не может.
+        // РџРѕРєР° РІРёСЃРёС‚ РЅР° РґРµСЂРµРІРµ - РёСЃРїРѕСЂС‚РёС‚СЊСЃСЏ РЅРµ РјРѕР¶РµС‚.
         //return false;
         throw new Exception("Apple cant rot when Hang" );
     }
