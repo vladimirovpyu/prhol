@@ -34,12 +34,6 @@ class AppleController extends Controller
                     ],
                 ],
             ],
-            'verbs' => [
-                'class' => VerbFilter::className(),
-                'actions' => [
-                    'logout' => ['post'],
-                ],
-            ],
         ];
     }
 
@@ -72,12 +66,6 @@ class AppleController extends Controller
         $addAppleForm = new AddAppleForm();
 
         return $this->render('index', ['dataProvider'=>$dataProvider, 'addAppleForm'=>$addAppleForm]);
-    }
-
-    public function newAppleAction()
-    {
-        // TODO: action create apple
-        return $this->goHome();
     }
 
     /**
