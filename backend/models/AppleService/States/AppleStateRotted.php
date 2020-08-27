@@ -16,7 +16,7 @@ class AppleStateRotted extends AppleStateAbstract implements AppleStateInterface
      */
     public function fall(): bool
     {
-        throw new Exception("Apple on ground already, and rotted" );
+        throw new \Exception("Apple on ground already, and rotted" );
     }
 
     /**
@@ -25,7 +25,7 @@ class AppleStateRotted extends AppleStateAbstract implements AppleStateInterface
      */
     public function eat(int $percent): bool
     {
-        throw new Exception("Cant eat rotted Apple" );
+        throw new \Exception("Cant eat rotted Apple" );
     }
 
 }

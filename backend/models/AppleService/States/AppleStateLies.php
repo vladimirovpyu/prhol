@@ -17,7 +17,7 @@ class AppleStateLies extends AppleStateAbstract implements AppleStateInterface
      */
     public function fall(): bool
     {
-        throw new Exception("Apple on ground already" );
+        throw new \Exception("Apple on ground already" );
     }
 
     /**
@@ -36,10 +36,12 @@ class AppleStateLies extends AppleStateAbstract implements AppleStateInterface
             $this->apple->size = 0;
         }
 
+        $this->service->save();
+
         if ($this->apple->size == 0) {
             $this->service->delete();
         }
 
-        return $this->apple->size;
+        return true;
     }
 }

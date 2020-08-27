@@ -5,6 +5,8 @@ use app\models\Apple;
 use app\models\AppleService\Interfaces\AppleServiceInterface;
 use app\models\AppleService\Interfaces\AppleStateInterface;
 use app\models\AppleService\States\AppleStateHang;
+use app\models\AppleService\States\AppleStateLies;
+use app\models\AppleService\States\AppleStateRotted;
 
 /**
  * Class AppleService
@@ -28,7 +30,6 @@ class AppleService implements AppleServiceInterface
     public function __construct(Apple $apple)
     {
         $this->apple = $apple;
-        $this->checkState();
     }
 
     /**
@@ -37,6 +38,12 @@ class AppleService implements AppleServiceInterface
      */
     public function eat(int $percent): bool
     {
+        $this->checkState();
+
+        if ($this->apple->size == 0) {
+            throw new \Exception('Apple is empty');
+        }
+
         try {
             $this->state->eat($percent);
         } catch (\Exception $e) {
@@ -50,6 +57,7 @@ class AppleService implements AppleServiceInterface
      */
     public function fall(): bool
     {
+        $this->checkState();
         try {
             $this->state->fall();
         }
@@ -63,7 +71,7 @@ class AppleService implements AppleServiceInterface
      * Определяет состояние по данным яблока
      * @return AppleStateInterface
      */
-    private function checkState()
+    public function checkState()
     {
         // 1. висит
         if ($this->apple->status == self::APPLE_STATUS_HANG) {
@@ -99,7 +107,14 @@ class AppleService implements AppleServiceInterface
 
     public function getState(): AppleStateInterface
     {
+        $this->checkState();
         return $this->state;
+    }
+
+    public function setStatus(int $status)
+    {
+        $this->apple->status = $status;
+        $this->save();
     }
 
     public function getSize(): int
@@ -109,7 +124,13 @@ class AppleService implements AppleServiceInterface
 
     public function save(): bool
     {
-        $this->apple->save();
+        try {
+            $this->apple->save();
+        }
+        catch(\Exception $e) {
+            throw $e;
+        }
+        return true;
     }
 
     public function delete(): bool

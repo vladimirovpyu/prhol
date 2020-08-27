@@ -1,6 +1,7 @@
 <?php
 namespace app\models\AppleService\States;
 
+use app\models\AppleService\AppleService;
 use app\models\AppleService\Interfaces\AppleStateInterface;
 use app\models\AppleService\States\AppleStateAbstract;
 
@@ -23,6 +24,10 @@ class AppleStateHang extends AppleStateAbstract implements AppleStateInterface
     {
         // просто меняем состояние
         $this->service->setState(new AppleStateLies($this->service, $this->apple));
+        $this->apple->status = AppleService::APPLE_STATUS_FALL;
+        $this->apple->date_fall = date("Y.m.d H:i:s");
+        $this->apple->save();
+        return true;
     }
 
     /**
@@ -34,7 +39,7 @@ class AppleStateHang extends AppleStateAbstract implements AppleStateInterface
     {
         // Когда висит на дереве - съесть не получится.
         //return false;
-        throw new Exception("Cant eat Apple when it Hang" );
+        throw new \Exception("Cant eat Apple when it Hang" );
     }
 
     /**
@@ -45,6 +50,6 @@ class AppleStateHang extends AppleStateAbstract implements AppleStateInterface
     {
         // Пока висит на дереве - испортиться не может.
         //return false;
-        throw new Exception("Apple cant rot when Hang" );
+        throw new \Exception("Apple cant rot when Hang" );
     }
 }

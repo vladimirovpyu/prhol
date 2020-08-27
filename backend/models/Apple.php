@@ -74,7 +74,16 @@ class Apple extends \yii\db\ActiveRecord
      */
     public function getState()
     {
-        $state = $this->service->getState();
-        return $state->stateName;
+        return $this->service->getState()->stateName;
+    }
+
+    public function fall()
+    {
+        return $this->service->fall();
+    }
+
+    public function eat(int $size)
+    {
+        return $this->service->eat($size);
     }
 }
