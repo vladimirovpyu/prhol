@@ -2,6 +2,7 @@
 
 namespace app\models;
 
+use app\models\AppleService\AppleService;
 use Yii;
 
 /**
@@ -16,6 +17,11 @@ use Yii;
  */
 class Apple extends \yii\db\ActiveRecord
 {
+    /**
+     * @var AppleService
+     */
+    private $service;
+
     /**
      * {@inheritdoc}
      */
@@ -49,5 +55,26 @@ class Apple extends \yii\db\ActiveRecord
             'status' => 'Status',
             'size' => 'Size',
         ];
+    }
+
+    /**
+     * Inject Apple Service into Model by constructor
+     * Apple constructor.
+     * @param array $config
+     */
+    public function __construct($config = [])
+    {
+        parent::__construct($config);
+        $this->service = new AppleService($this);
+    }
+
+    /**
+     * Abstract attribute $apple->state
+     * @return mixed
+     */
+    public function getState()
+    {
+        $state = $this->service->getState();
+        return $state->stateName;
     }
 }

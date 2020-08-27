@@ -1,7 +1,8 @@
 <?php
+namespace app\models\AppleService\States;
 
-use \AppleService\Interfaces\AppleStateInterface;
-use \AppleService\Interfaces\AppleServiceInterface;
+use app\models\AppleService\Interfaces\AppleStateInterface;
+use app\models\AppleService\Interfaces\AppleServiceInterface;
 use app\models\Apple;
 
 /**
@@ -9,15 +10,17 @@ use app\models\Apple;
  */
 abstract class AppleStateAbstract implements AppleStateInterface
 {
+    public $stateName = 'undefined';
+
     /**
      * @var AppleServiceInterface
      */
-    protected AppleServiceInterface $service;
+    protected $service;
 
     /**
      * @var Apple
      */
-    protected Apple $apple;
+    protected $apple;
 
     /**
      * AppleStateAbstract constructor.
@@ -28,5 +31,4 @@ abstract class AppleStateAbstract implements AppleStateInterface
         $this->service = $service;
         $this->apple = $apple;
     }
-
 }

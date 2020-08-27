@@ -1,5 +1,7 @@
 <?php
-use \AppleService\Interfaces\AppleStateInterface;
+namespace app\models\AppleService\States;
+
+use app\models\AppleService\Interfaces\AppleStateInterface;
 
 /**
  * Class AppleStateRot
@@ -7,6 +9,8 @@ use \AppleService\Interfaces\AppleStateInterface;
  */
 class AppleStateRotted extends AppleStateAbstract implements AppleStateInterface
 {
+    public $stateName = 'rotted';
+
     /**
      * @return bool
      */

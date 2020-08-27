@@ -1,5 +1,7 @@
 <?php
-use \AppleService\Interfaces\AppleStateInterface;
+namespace app\models\AppleService\States;
+
+use app\models\AppleService\Interfaces\AppleStateInterface;
 
 /**
  * Class AppleStateLies
@@ -7,6 +9,8 @@ use \AppleService\Interfaces\AppleStateInterface;
  */
 class AppleStateLies extends AppleStateAbstract implements AppleStateInterface
 {
+    public $stateName = 'lies';
+
     /**
      * Упасть
      * @return bool
@@ -38,5 +42,4 @@ class AppleStateLies extends AppleStateAbstract implements AppleStateInterface
 
         return $this->apple->size;
     }
-
 }

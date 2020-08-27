@@ -1,9 +1,10 @@
 <?php
-namespace AppleService;
+namespace app\models\AppleService;
 
 use app\models\Apple;
-use AppleService\Interfaces\AppleServiceInterface;
-use AppleService\Interfaces\AppleStateInterface;
+use app\models\AppleService\Interfaces\AppleServiceInterface;
+use app\models\AppleService\Interfaces\AppleStateInterface;
+use app\models\AppleService\States\AppleStateHang;
 
 /**
  * Class AppleService
@@ -17,12 +18,12 @@ class AppleService implements AppleServiceInterface
     /**
      * @var Apple
      */
-    private Apple $apple;
+    private $apple;
 
     /**
      * @var AppleStateInterface
      */
-    private AppleStateInterface $state;
+    private $state;
 
     public function __construct(Apple $apple)
     {
@@ -39,7 +40,7 @@ class AppleService implements AppleServiceInterface
         try {
             $this->state->eat($percent);
         } catch (\Exception $e) {
-            return false;
+            throw $e;
         }
         return true;
     }
@@ -53,7 +54,7 @@ class AppleService implements AppleServiceInterface
             $this->state->fall();
         }
         catch (\Exception $e) {
-            return false;
+            throw $e;
         }
         return true;
     }
@@ -66,7 +67,7 @@ class AppleService implements AppleServiceInterface
     {
         // 1. висит
         if ($this->apple->status == self::APPLE_STATUS_HANG) {
-            $this->setState(new \AppleStateHang($this, $this->apple));
+            $this->setState(new AppleStateHang($this, $this->apple));
         }
         // 2. лежит
         else
@@ -76,11 +77,11 @@ class AppleService implements AppleServiceInterface
             $nowDateTime = new \DateTime();
             $fallDateTime = new \DateTime($this->apple->date_fall);
             if ($nowDateTime->diff($fallDateTime)->format('%H') > 5) {
-                $this->setState(new \AppleStateRotted($this, $this->apple));
+                $this->setState(new AppleStateRotted($this, $this->apple));
             }
             // 2.2 еще съедобно
             else {
-                $this->setState(new \AppleStateLies($this, $this->apple));
+                $this->setState(new AppleStateLies($this, $this->apple));
             }
         }
 
@@ -117,7 +118,7 @@ class AppleService implements AppleServiceInterface
             $this->apple->delete();
         }
         catch(\Exception $e) {
-            return false;
+            throw $e;
         }
         return true;
     }

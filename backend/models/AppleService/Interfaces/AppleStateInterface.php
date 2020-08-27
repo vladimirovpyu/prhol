@@ -1,5 +1,5 @@
 <?php
-namespace AppleService\Interfaces;
+namespace app\models\AppleService\Interfaces;
 
 /**
  * Два основных метода - падать и кушать
@@ -23,6 +23,5 @@ interface AppleStateInterface
      * @return mixed
      */
     public function eat(int $percent): bool;
-
 
 }

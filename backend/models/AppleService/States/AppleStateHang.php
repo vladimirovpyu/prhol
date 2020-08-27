@@ -1,5 +1,8 @@
 <?php
-use \AppleService\Interfaces\AppleStateInterface;
+namespace app\models\AppleService\States;
+
+use app\models\AppleService\Interfaces\AppleStateInterface;
+use app\models\AppleService\States\AppleStateAbstract;
 
 /**
  * Class AppleStateHang
@@ -10,6 +13,7 @@ use \AppleService\Interfaces\AppleStateInterface;
  */
 class AppleStateHang extends AppleStateAbstract implements AppleStateInterface
 {
+    public $stateName = 'hang';
 
     /**
      * Упасть
@@ -44,4 +48,3 @@ class AppleStateHang extends AppleStateAbstract implements AppleStateInterface
         throw new Exception("Apple cant rot when Hang" );
     }
 }
-

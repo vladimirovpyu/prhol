@@ -1,5 +1,5 @@
 <?php
-namespace AppleService\Interfaces;
+namespace app\models\AppleService\Interfaces;
 
 /**
  * Интерфейс сервиса для работы с яблоками.
