@@ -1,60 +1,76 @@
-<p align="center">
-    <a href="https://github.com/yiisoft" target="_blank">
-        <img src="https://avatars0.githubusercontent.com/u/993323" height="100px">
-    </a>
-    <h1 align="center">Yii 2 Advanced Project Template</h1>
-    <br>
-</p>
 
-Yii 2 Advanced Project Template is a skeleton [Yii 2](http://www.yiiframework.com/) application best for
-developing complex Web applications with multiple tiers.
+Здесь выполнено тестовое задание с применением паттерна "Состояние": 
 
-The template includes three tiers: front end, back end, and console, each of which
-is a separate Yii application.
+Написать класс/объект Apple с хранением яблок в БД MySql следуя ООП парадигме.
 
-The template is designed to work in a team development environment. It supports
-deploying the application in different environments.
+Функции
+- упасть
+- съесть ($percent - процент откушенной части)
+- удалить (когда полностью съедено)
 
-Documentation is at [docs/guide/README.md](docs/guide/README.md).
+Переменные
+- цвет (устанавливается при создании объекта случайным)
+- дата появления (устанавливается при создании объекта случайным unixTmeStamp)
+- дата падения (устанавливается при падении объекта с дерева)
+- статус (на дереве / упало)
+- сколько съели (%)
+- другие необходимые переменные, для определения состояния.
 
-[![Latest Stable Version](https://img.shields.io/packagist/v/yiisoft/yii2-app-advanced.svg)](https://packagist.org/packages/yiisoft/yii2-app-advanced)
-[![Total Downloads](https://img.shields.io/packagist/dt/yiisoft/yii2-app-advanced.svg)](https://packagist.org/packages/yiisoft/yii2-app-advanced)
-[![Build Status](https://travis-ci.com/yiisoft/yii2-app-advanced.svg?branch=master)](https://travis-ci.com/yiisoft/yii2-app-advanced)
+Состояния
+- висит на дереве
+- упало/лежит на земле
+- гнилое яблоко
 
-DIRECTORY STRUCTURE
--------------------
+Условия
+Пока висит на дереве - испортиться не может.
+Когда висит на дереве - съесть не получится.
+После лежания 5 часов - портится.
+Когда испорчено - съесть не получится.
+Когда съедено - удаляется из массива яблок.
 
+<b>Installation</b>
+
+Clone Repository
 ```
-common
-    config/              contains shared configurations
-    mail/                contains view files for e-mails
-    models/              contains model classes used in both backend and frontend
-    tests/               contains tests for common classes    
-console
-    config/              contains console configurations
-    controllers/         contains console controllers (commands)
-    migrations/          contains database migrations
-    models/              contains console-specific model classes
-    runtime/             contains files generated during runtime
-backend
-    assets/              contains application assets such as JavaScript and CSS
-    config/              contains backend configurations
-    controllers/         contains Web controller classes
-    models/              contains backend-specific model classes
-    runtime/             contains files generated during runtime
-    tests/               contains tests for backend application    
-    views/               contains view files for the Web application
-    web/                 contains the entry script and Web resources
-frontend
-    assets/              contains application assets such as JavaScript and CSS
-    config/              contains frontend configurations
-    controllers/         contains Web controller classes
-    models/              contains frontend-specific model classes
-    runtime/             contains files generated during runtime
-    tests/               contains tests for frontend application
-    views/               contains view files for the Web application
-    web/                 contains the entry script and Web resources
-    widgets/             contains frontend widgets
-vendor/                  contains dependent 3rd-party packages
-environments/            contains environment-based overrides
+git clone git@github.com:vladimirovpyu/prhol.git yii2-app-advanced
+cd yii2-app-advanced/vagrant/config
 ```
+Vargant 
+```
+cp vagrant-local.example.yml vagrant-local.yml
+```
+Place your GitHub personal API token to vagrant-local.yml
+```
+cd yii2-app-advanced
+vagrant plugin install vagrant-hostmanager
+vagrant up
+```
+
+frontend: http://y2aa-frontend.test
+backend: http://y2aa-backend.test
+
+Create database in Vagrant VM and add db configuration to /common/config/main-local.php
+
+Make migrations
+```
+php yii migrate
+```
+
+Create User
+
+Open http://y2aa-frontend.test
+
+Make user (ex: admin/admin123)
+
+<b>Using</b>
+
+Open http://y2aa-backend.test
+
+Login by user
+
+Open http://y2aa-backend.test/apple/index 
+
+Screen:
+http://y2aa-backend.test/screen/apple.png
+Or github: 
+https://github.com/vladimirovpyu/prhol/tree/master/backend/web/assets/screen/apple.png
