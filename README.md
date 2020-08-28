@@ -73,4 +73,4 @@ Open http://y2aa-backend.test/apple/index
 Screen:
 http://y2aa-backend.test/screen/apple.png
 Or github: 
-https://github.com/vladimirovpyu/prhol/tree/master/backend/web/assets/screen/apple.png
+https://github.com/vladimirovpyu/prhol/blob/master/backend/web/screen/apple.png
